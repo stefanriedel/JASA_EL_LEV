@@ -7,7 +7,6 @@ from Utility.sweetAreaUtility import getCircularArray, getRectangularArray
 # Define directory for saving figures
 root_dir = dirname(__file__)
 save_path = pjoin(root_dir, 'Figures')
-#"C://Users//p3897//Documents//GitHub//jasa_express_lev//2021-05 v JASA-EL_LaTeXPackage//figures"
 
 # Load HRTF set
 hrir = np.load(file='./Utility/HRIR_CIRC360_48kHz.npy')
@@ -19,7 +18,7 @@ h_L = hrtf[:,0,:]
 h_R = hrtf[:,1,:]
 
 # Define meshgrid resolution and simulation area
-res = 40    
+res = 20    # publication used res = 40, which takes a while to compute    
 array_radius = 1
 area_len = 1.1
 # Define head rotations used for evaluation of IC and ILD

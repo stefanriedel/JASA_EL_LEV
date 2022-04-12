@@ -1,0 +1,1951 @@
+{
+    "Experiment": "Evaluation of Listener Envelopment.",
+    "SubjectInformation": {
+        "Subject": "subject19",
+        "Age": 24,
+        "Gender": "male"
+    },
+    "StartTime": "28 Apr 2021 16:16:45",
+    "EndTime": "28 Apr 2021 17:05:26",
+    "Results": {
+        "PresentedOrderOfParts": [
+            0,
+            1
+        ],
+        "Parts": [
+            {
+                "PresentedOrderOfTrials": [
+                    0,
+                    28,
+                    2,
+                    1,
+                    25,
+                    17,
+                    13,
+                    21,
+                    11,
+                    10,
+                    5,
+                    9,
+                    31,
+                    8,
+                    12,
+                    22,
+                    6,
+                    30,
+                    3,
+                    26,
+                    20,
+                    14,
+                    23,
+                    15,
+                    4,
+                    27,
+                    16,
+                    18,
+                    24,
+                    7,
+                    29,
+                    19
+                ],
+                "Trials": [
+                    {
+                        "TrialName": "WN_DR2_LatOffC_0_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            25.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 192.2073548
+                    },
+                    {
+                        "TrialName": "WN_DR2_LatOffC_50_Frontal_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            42.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 52.1092236
+                    },
+                    {
+                        "TrialName": "WN_DR2_LatOffC_50_Frontal_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            25.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 52.8227878
+                    },
+                    {
+                        "TrialName": "WN_DR2_LatOffC_50_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            7.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 34.6260353
+                    },
+                    {
+                        "TrialName": "WN_DR4_LatOffC_0_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            30.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 33.8722058
+                    },
+                    {
+                        "TrialName": "WN_DR4_LatOffC_50_Frontal_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            25.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 36.7234981
+                    },
+                    {
+                        "TrialName": "WN_DR4_LatOffC_50_Frontal_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            12.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 33.0171864
+                    },
+                    {
+                        "TrialName": "WN_DR4_LatOffC_50_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            12.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 40.0459791
+                    },
+                    {
+                        "TrialName": "WN_DR8_LatOffC_0_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            92.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 54.3217025
+                    },
+                    {
+                        "TrialName": "WN_DR8_LatOffC_50_Frontal_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            37.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 57.0262571
+                    },
+                    {
+                        "TrialName": "WN_DR8_LatOffC_50_Frontal_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            92.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 72.2330492
+                    },
+                    {
+                        "TrialName": "WN_DR8_LatOffC_50_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            50.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 52.51389409999999
+                    },
+                    {
+                        "TrialName": "WN_DR12_LatOffC_0_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            97.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 82.2475642
+                    },
+                    {
+                        "TrialName": "WN_DR12_LatOffC_50_Frontal_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            70.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 47.9253028
+                    },
+                    {
+                        "TrialName": "WN_DR12_LatOffC_50_Frontal_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            75.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 46.1071466
+                    },
+                    {
+                        "TrialName": "WN_DR12_LatOffC_50_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            50.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 34.5663558
+                    },
+                    {
+                        "TrialName": "WN_DR2_LatOffC_0_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            0.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 31.4641033
+                    },
+                    {
+                        "TrialName": "WN_DR2_LatOffC_50_Rotated_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            25.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 54.6749459
+                    },
+                    {
+                        "TrialName": "WN_DR2_LatOffC_50_Rotated_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            10.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 31.8170107
+                    },
+                    {
+                        "TrialName": "WN_DR2_LatOffC_50_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            5.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 31.5363955
+                    },
+                    {
+                        "TrialName": "WN_DR4_LatOffC_0_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            25.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 26.2335965
+                    },
+                    {
+                        "TrialName": "WN_DR4_LatOffC_50_Rotated_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            82.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 56.5168572
+                    },
+                    {
+                        "TrialName": "WN_DR4_LatOffC_50_Rotated_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            62.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 30.1031064
+                    },
+                    {
+                        "TrialName": "WN_DR4_LatOffC_50_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            25.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 28.9698417
+                    },
+                    {
+                        "TrialName": "WN_DR8_LatOffC_0_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            97.5,
+                            100.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 71.1201586
+                    },
+                    {
+                        "TrialName": "WN_DR8_LatOffC_50_Rotated_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            90.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 73.7965706
+                    },
+                    {
+                        "TrialName": "WN_DR8_LatOffC_50_Rotated_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            75.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 27.1405813
+                    },
+                    {
+                        "TrialName": "WN_DR8_LatOffC_50_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            25.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 36.0527004
+                    },
+                    {
+                        "TrialName": "WN_DR12_LatOffC_0_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            97.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 68.3053183
+                    },
+                    {
+                        "TrialName": "WN_DR12_LatOffC_50_Rotated_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            90.0,
+                            100.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 58.1311703
+                    },
+                    {
+                        "TrialName": "WN_DR12_LatOffC_50_Rotated_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            87.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 40.1308747
+                    },
+                    {
+                        "TrialName": "WN_DR12_LatOffC_50_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            85.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 65.8764691
+                    }
+                ]
+            },
+            {
+                "PresentedOrderOfTrials": [
+                    13,
+                    31,
+                    6,
+                    16,
+                    1,
+                    7,
+                    25,
+                    11,
+                    29,
+                    27,
+                    28,
+                    15,
+                    9,
+                    21,
+                    26,
+                    18,
+                    30,
+                    22,
+                    8,
+                    5,
+                    14,
+                    17,
+                    20,
+                    0,
+                    3,
+                    24,
+                    23,
+                    19,
+                    12,
+                    2,
+                    4,
+                    10
+                ],
+                "Trials": [
+                    {
+                        "TrialName": "LPWN_DR2_LatOffC_0_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            42.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 26.8375265
+                    },
+                    {
+                        "TrialName": "LPWN_DR2_LatOffC_50_Frontal_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            37.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 39.2938597
+                    },
+                    {
+                        "TrialName": "LPWN_DR2_LatOffC_50_Frontal_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            0.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 19.530177
+                    },
+                    {
+                        "TrialName": "LPWN_DR2_LatOffC_50_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            17.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 28.9121506
+                    },
+                    {
+                        "TrialName": "LPWN_DR4_LatOffC_0_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            75.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 25.3092521
+                    },
+                    {
+                        "TrialName": "LPWN_DR4_LatOffC_50_Frontal_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            50.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 21.1013713
+                    },
+                    {
+                        "TrialName": "LPWN_DR4_LatOffC_50_Frontal_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            30.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 27.1965976
+                    },
+                    {
+                        "TrialName": "LPWN_DR4_LatOffC_50_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            55.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 27.771635
+                    },
+                    {
+                        "TrialName": "LPWN_DR8_LatOffC_0_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            90.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 46.254785
+                    },
+                    {
+                        "TrialName": "LPWN_DR8_LatOffC_50_Frontal_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            40.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 21.0780865
+                    },
+                    {
+                        "TrialName": "LPWN_DR8_LatOffC_50_Frontal_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            67.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 25.3083667
+                    },
+                    {
+                        "TrialName": "LPWN_DR8_LatOffC_50_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            62.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 31.0676833
+                    },
+                    {
+                        "TrialName": "LPWN_DR12_LatOffC_0_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            90.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 32.3034075
+                    },
+                    {
+                        "TrialName": "LPWN_DR12_LatOffC_50_Frontal_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            37.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 33.4270641
+                    },
+                    {
+                        "TrialName": "LPWN_DR12_LatOffC_50_Frontal_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            87.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 44.8479363
+                    },
+                    {
+                        "TrialName": "LPWN_DR12_LatOffC_50_Frontal_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            70.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 20.7045662
+                    },
+                    {
+                        "TrialName": "LPWN_DR2_LatOffC_0_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            0.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 18.7258974
+                    },
+                    {
+                        "TrialName": "LPWN_DR2_LatOffC_50_Rotated_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            22.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 29.0766914
+                    },
+                    {
+                        "TrialName": "LPWN_DR2_LatOffC_50_Rotated_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            7.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 20.4050838
+                    },
+                    {
+                        "TrialName": "LPWN_DR2_LatOffC_50_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            2.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 21.9682122
+                    },
+                    {
+                        "TrialName": "LPWN_DR4_LatOffC_0_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            57.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 22.610186
+                    },
+                    {
+                        "TrialName": "LPWN_DR4_LatOffC_50_Rotated_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            82.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 37.897523
+                    },
+                    {
+                        "TrialName": "LPWN_DR4_LatOffC_50_Rotated_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            37.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 25.4229794
+                    },
+                    {
+                        "TrialName": "LPWN_DR4_LatOffC_50_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            50.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 26.962839
+                    },
+                    {
+                        "TrialName": "LPWN_DR8_LatOffC_0_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            97.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 46.8845226
+                    },
+                    {
+                        "TrialName": "LPWN_DR8_LatOffC_50_Rotated_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            95.0,
+                            100.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 43.2055584
+                    },
+                    {
+                        "TrialName": "LPWN_DR8_LatOffC_50_Rotated_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            75.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 29.5012583
+                    },
+                    {
+                        "TrialName": "LPWN_DR8_LatOffC_50_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            62.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 20.8641906
+                    },
+                    {
+                        "TrialName": "LPWN_DR12_LatOffC_0_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            95.0,
+                            100.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 41.5419766
+                    },
+                    {
+                        "TrialName": "LPWN_DR12_LatOffC_50_Rotated_plane.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            92.5,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 37.9642768
+                    },
+                    {
+                        "TrialName": "LPWN_DR12_LatOffC_50_Rotated_cylinder.wav",
+                        "Ratings": [
+                            NaN,
+                            87.5,
+                            100.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            1,
+                            2,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 31.7907931
+                    },
+                    {
+                        "TrialName": "LPWN_DR12_LatOffC_50_Rotated_point.wav",
+                        "Ratings": [
+                            NaN,
+                            100.0,
+                            90.0,
+                            50.0
+                        ],
+                        "Scale": {
+                            "Min": 0.0,
+                            "Max": 100.0,
+                            "StepSize": 2.5,
+                            "DefaultValue": 50.0,
+                            "Labels": [
+                                "Anc",
+                                "Definitely Diff.",
+                                "Different",
+                                "Slightly Diff.",
+                                "REF"
+                            ]
+                        },
+                        "PresentedOrderOfStimuli": [
+                            0,
+                            2,
+                            1,
+                            3
+                        ],
+                        "ElapsedTimeInSeconds": 38.0912948
+                    }
+                ]
+            }
+        ]
+    },
+    "MushraAppVersion": "0.1.3"
+}

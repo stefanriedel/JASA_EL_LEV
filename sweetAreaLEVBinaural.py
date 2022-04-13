@@ -22,7 +22,7 @@ res = 20    # publication used res = 40, which takes a while to compute
 array_radius = 1
 area_len = 1.1
 # Define head rotations used for evaluation of IC and ILD
-rotations = np.array([0,45,90,135,-180,-135,-90,-45])   # set between -180 and 180
+rotations = np.array([0,30,60,90,120,150,-180,-150,-120,-90,-60,-30])   # set between -180 and 180
 # -> if needed, reduce res and rotations to speed up the computation time
 
 # Specify simulated layout

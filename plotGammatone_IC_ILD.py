@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from os.path import dirname, join as pjoin
-from pyfilterbank import GammatoneFilterbank as GT
 
 root_dir = dirname(__file__)
 utility_path = pjoin(root_dir, 'Utility')

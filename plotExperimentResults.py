@@ -152,9 +152,10 @@ fill_map[fill_map<0.001] = 0.001
 fill_map = (20*np.log10(fill_map) + dB_range) / dB_range
 fill_map = fill_map.clip(min=0)
 
-titles = ['on-center', 'const. sources', 'line sources', 'point sources', 'const. sources', 'line sources', 'point sources']
 
+titles = ['on-center \n\n ', '\n\n const. sources', 'off-center \n\n line sources',  '\n\n point sources', '\n\n const. sources', 'off-center (90° rotated) \n\n line sources', '\n\n point sources']
 font_sz = 8
+layout_strings = ['  2 LS', '  4 LS', '  8 LS', ' 12 LS']
 
 for idx in range(num_layouts): 
     for n in range(num_geometries):
@@ -190,13 +191,30 @@ for idx in range(num_layouts):
 
         if idx == 0:
             axes[2*idx,n].set_title(titles[n], fontsize=font_sz)
-
-
+            lw = 0.5
+            y_val = 1.375
+            if n == 1:
+                trans = axes[2*idx,n].get_xaxis_transform()
+                axes[2*idx,n].plot([0.1,1.1],[y_val, y_val], color="k", transform=trans, clip_on=False, linewidth=lw)
+            if n == 3:
+                trans = axes[2*idx,n].get_xaxis_transform()
+                axes[2*idx,n].plot([-0.1,0.9],[y_val, y_val], color="k", transform=trans, clip_on=False, linewidth=lw)
+            if n == 4:
+                trans = axes[2*idx,n].get_xaxis_transform()
+                axes[2*idx,n].plot([0.1,0.7],[y_val, y_val], color="k", transform=trans, clip_on=False, linewidth=lw)
+            if n == 6:
+                trans = axes[2*idx,n].get_xaxis_transform()
+                axes[2*idx,n].plot([0.3,0.9],[y_val, y_val], color="k", transform=trans, clip_on=False, linewidth=lw)
 
         axes[2*idx+1,n].set_ylim(-1,1)
         axes[2*idx+1,n].set_xlim(-1,1)
         axes[2*idx+1,n].set(adjustable='box', aspect='equal')
         axes[2*idx+1,n].axis('off')
+
+        if n == 0:
+            trans = axes[2*idx+1,n].get_xaxis_transform()
+            axes[2*idx+1,n].text(-1.9, 0.8, layout_strings[idx], fontsize=font_sz, transform=trans)
+        
 
         for j in range(phi.shape[0]):
             clr = 1 - fill_map[idx,n,j]

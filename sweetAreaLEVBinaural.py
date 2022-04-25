@@ -11,8 +11,6 @@ if __name__ == '__main__':
     save_path = pjoin(root_dir, 'Figures')
     utility_path = pjoin(root_dir, 'Utility')
 
-    #"C://Users//p3897//Documents//GitHub//jasa_express_lev//2021-05 v JASA-EL_LaTeXPackage//figures"
-
     #Load gammatone magnitude windows, precomputed using the 'pyfilterbank' library
     # https://github.com/SiggiGue/pyfilterbank
     filename = 'gammatone_erb_mag_windows_nfft_1024_numbands_320.npy'

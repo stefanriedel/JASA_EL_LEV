@@ -5,8 +5,8 @@ Dependencies:
 * numpy
 * scipy
 * matplotlib
-
-With a python environment that is ready to go, these scripts will do the following:  
+* joblib
+  
   
 *plotExperimentResults.py*:  
 plots statistics of experiment results with visualizations of conditions.  

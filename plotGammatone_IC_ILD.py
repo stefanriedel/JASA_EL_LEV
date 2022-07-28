@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from os.path import dirname, join as pjoin
 
+COLOR_PLOTS = True
 root_dir = dirname(__file__)
 utility_path = pjoin(root_dir, 'Utility')
 data_dir = pjoin(root_dir, 'ExperimentData')
@@ -45,6 +46,8 @@ IC_ref = np.zeros(num_bands, dtype=float)
 ILD = np.zeros((num_stimuli,num_bands), dtype=float)
 ILD_ref = np.zeros(num_bands, dtype=float)
 
+tau_range = np.arange(int(-fs*0.001), int(fs*0.001))
+
 # --- Reference --- 2D diffuse field
 cross_spec_ref = np.diag(np.dot( np.conj(h_L[idx_ref,:]).T , h_R[idx_ref,:]))
 auto_spec_ref_l =  np.diag(np.dot( np.conj(h_L[idx_ref,:]).T , h_L[idx_ref,:]))
@@ -59,7 +62,7 @@ for b in range(num_bands):
     P_l = np.max(np.abs( np.fft.irfft(auto_spec_l_w)))
     P_r = np.max(np.abs( np.fft.irfft(auto_spec_r_w)))
 
-    IC_ref[b] = np.max(np.abs(cross_correlation))  / np.sqrt(P_l * P_r)
+    IC_ref[b] = np.max(np.abs(cross_correlation[tau_range]))  / np.sqrt(P_l * P_r)
     ILD_ref[b] = 10*np.log10(P_l / P_r)
 
 
@@ -78,11 +81,11 @@ for stim in range(num_stimuli):
         auto_spec_l_w = auto_spec_stim_l*window
         auto_spec_r_w = auto_spec_stim_r*window
             
-        cross_correlation = np.real(np.fft.irfft( cross_spec_w ))
+        cross_correlation = np.real(np.fft.irfft(cross_spec_w))
         P_l = np.max(np.abs( np.fft.irfft(auto_spec_l_w)))
         P_r = np.max(np.abs( np.fft.irfft(auto_spec_r_w)))
 
-        IC[stim,b] = np.max(np.abs(cross_correlation))  / np.sqrt(P_l * P_r)        
+        IC[stim,b] = np.max(np.abs(cross_correlation[tau_range]))  / np.sqrt(P_l * P_r)        
         ILD[stim,b] = 10*np.log10(P_l / P_r)
 
 
@@ -90,11 +93,17 @@ plt.figure(figsize=(5, 3))
 subset_to_plot = [12,13,14,15]
 labels = ['on-center', 'off-c: const. sources', 'off-c: line sources', 'off-c: point sources']
 ls = ['-', '-.', '--', (0,(1,1)),'-']
+if COLOR_PLOTS:
+    ls = ['-', '--', '-','-.', (0, (5, 1))]
 font_sz = 12
 cl = [0.3, 0.4, 0.5, 0.6, 0]
+colors = ['cornflowerblue', 'goldenrod', 'olivedrab', 'tab:purple']
+
 idx = 0
 for stim in subset_to_plot:
     clr = [cl[idx],cl[idx],cl[idx]]
+    if COLOR_PLOTS:
+        clr = colors[idx]
     plt.semilogx(f_c, IC[stim,:], label=labels[idx],linewidth=2.5, color=clr ,  linestyle=ls[idx])
     idx += 1
 clr = [cl[idx],cl[idx],cl[idx]]
@@ -116,6 +125,8 @@ plt.figure(figsize=(5, 3))
 idx = 0
 for stim in subset_to_plot:
     clr = [cl[idx],cl[idx],cl[idx]]
+    if COLOR_PLOTS:
+        clr = colors[idx]
     plt.semilogx(f_c, ILD[stim,:], label=labels[idx], linewidth=2.5, linestyle=ls[idx], color=clr)
     idx += 1
 clr = [cl[idx],cl[idx],cl[idx]]

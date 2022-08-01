@@ -22,6 +22,9 @@ all_ratings_WN = np.zeros((N,32))
 all_ratings_LPWN = np.zeros((N,32))
 
 DifferenceGrade = True
+PlotIndividualData = True
+rng = np.random.default_rng(2022)
+BOOTSTRAP_CI = False
 
 for subj in range(N):
     f_location = pjoin(data_dir, 'subject' + str(subj+1) + '.json')
@@ -57,14 +60,46 @@ for subj in range(N):
 medians_WN = np.median(all_ratings_WN, axis=0)
 medians_LPWN = np.median(all_ratings_LPWN, axis=0)
 
-# Bootstrap Median CIs
-data = (all_ratings_WN + np.tile((np.random.rand(24)-0.5)*0.000001, (32,1)).T, )
-bstrap = stats.bootstrap(data=data, statistic=np.median, method='BCa', confidence_level=0.95)
-median_conf_int_WN = bstrap.confidence_interval
+class median_conf_int:
+    def __init__(self):
+        self.low = 0
+        self.high = 0
 
-data = (all_ratings_LPWN + np.tile((np.random.rand(24)-0.5)*0.000001, (32,1)).T, )
-bstrap = stats.bootstrap(data=data, statistic=np.median, method='BCa', confidence_level=0.95)
-median_conf_int_LPWN = bstrap.confidence_interval
+
+if BOOTSTRAP_CI:
+    # Bootstrap Median CIs
+    data = (all_ratings_WN + np.tile((rng.random(N)-0.5)*0.000001, (32,1)).T, )
+    bstrap = stats.bootstrap(data=data, statistic=np.median, method='BCa', confidence_level=0.95)
+    median_conf_int_WN = bstrap.confidence_interval
+
+    data = (all_ratings_LPWN + np.tile((rng.random(N)-0.5)*0.000001, (32,1)).T, )
+    bstrap = stats.bootstrap(data=data, statistic=np.median, method='BCa', confidence_level=0.95)
+    median_conf_int_LPWN = bstrap.confidence_interval
+else:
+    #z = 1.96
+    #n = 24
+    #q = 0.5
+    #low_idx = int(np.ceil(n*q - z *np.sqrt(n*q*(1-q) ) )) - 1
+    #hi_idx = int(np.ceil( n*q + z *np.sqrt(n*q*(1-q) ) ))
+
+    low_idx, hi_idx = stats.binom.ppf([0.025, 0.975], 24, 0.5)
+    actual_prob_low = stats.binom.pmf(low_idx, N, 0.5) #check for 95% coverage
+    actual_prob_hi = stats.binom.pmf(hi_idx, N, 0.5)
+
+    low_idx = int(low_idx - 1) # python array indexing from 0
+    hi_idx = int(hi_idx - 1)
+
+    median_conf_int_WN = median_conf_int()
+    sorted_data_WN = np.sort(all_ratings_WN, axis=0)
+    median_conf_int_WN.low = sorted_data_WN[low_idx, :]
+    median_conf_int_WN.high = sorted_data_WN[hi_idx, :]
+
+    median_conf_int_LPWN = median_conf_int()
+    sorted_data_LPWN = np.sort(all_ratings_LPWN, axis=0)
+    median_conf_int_LPWN.low = sorted_data_LPWN[low_idx, :]
+    median_conf_int_LPWN.high = sorted_data_LPWN[hi_idx, :]
+
+
 
 
 # Plot statistical results
@@ -86,9 +121,15 @@ medians_NLS = np.zeros((num_layouts, num_geometries, num_stim_types))
 median_conf_int_NLS_low = np.zeros((num_layouts, num_geometries, num_stim_types))
 median_conf_int_NLS_high = np.zeros((num_layouts, num_geometries, num_stim_types))
 
+indiv_data = np.zeros((num_layouts, num_geometries, num_stim_types, N))
 
 for idx in range(num_layouts):
     indices = np.hstack((np.array([idx*4 + np.arange(4)]), np.array([idx*4+rotation_offs + np.arange(3)])))
+
+    for n in range(indices.size):
+        indiv_data[idx, n, 0, :] = all_ratings_WN[:, indices[0][n]]
+        indiv_data[idx, n, 1, :] = all_ratings_LPWN[:, indices[0][n]] 
+
     medians_NLS[idx,:,0] = medians_WN[indices]
     medians_NLS[idx,:,1] = medians_LPWN[indices]
 
@@ -146,6 +187,8 @@ for idx in range(num_layouts):
 mks = ['s',  'o']
 mks_clr = ['w', 'k']
 
+data_colors = ['cornflowerblue', 'goldenrod', 'olivedrab', 'tab:purple', 'goldenrod', 'olivedrab', 'tab:purple']
+
 # Transform fill_map into dB range with 0dB = black
 dB_range = 10
 fill_map[fill_map<0.001] = 0.001
@@ -183,11 +226,14 @@ for idx in range(num_layouts):
         axes[2*idx,n].set_yticks([0,25,50,75,100])
         axes[2*idx,n].grid(axis='y')
             
-        
+        data_style = ['s', 'o']
         for sidx in range(2):
             asymmetric_error_CI = [ [medians_NLS[idx,n,sidx]-median_conf_int_NLS_low[idx,n,sidx]], [median_conf_int_NLS_high[idx,n,sidx]-medians_NLS[idx,n,sidx] ]]
             axes[2*idx,n].errorbar(xaxis[sidx], medians_NLS[idx ,n, sidx] , capsize=2.0 ,linestyle='none', xerr=0, yerr=asymmetric_error_CI ,color='k', zorder=2)
             axes[2*idx,n].plot(xaxis[sidx], medians_NLS[idx,n,sidx], mks[sidx], fillstyle='full', markerfacecolor=mks_clr[sidx], markeredgecolor='k', zorder=3, label='data')
+            if PlotIndividualData:
+                axes[2*idx,n].scatter(xaxis[sidx]+rng.random(N)*0.10 - 0.05, indiv_data[idx,n,sidx,:], s=8, c=data_colors[n], marker=data_style[sidx], alpha=0.15, zorder=1)
+
 
         if idx == 0:
             axes[2*idx,n].set_title(titles[n], fontsize=font_sz)
@@ -234,6 +280,47 @@ f.legend(bbox_to_anchor=(0.1, 0.07, 0.8, 1), loc='lower left',mode='expand', num
         fontsize='small', labels=['white noise', 'lowpass noise'], framealpha=1)
 
 plt.savefig(fname=pjoin(save_path, 'ExpResults_DiffGrade.pdf'), bbox_inches='tight')
+
+# Statistical tests: Wilcoxon signed rank
+# WHITE NOISE
+# 8 loudspeakers
+# on-center vs. off-center const. sources:  
+st, p1 = stats.wilcoxon(x=all_ratings_WN[:, 8], y=all_ratings_WN[:, 9])
+# on-center vs. off-center line sources:  
+st, p2 = stats.wilcoxon(x=all_ratings_WN[:, 8], y=all_ratings_WN[:, 10])
+# on-center vs. off-center point sources: 
+st, p3 = stats.wilcoxon(x=all_ratings_WN[:, 8], y=all_ratings_WN[:, 11])
+# 12 loudspeakers
+# on-center vs. off-center const. sources: 
+st, p4 = stats.wilcoxon(x=all_ratings_WN[:, 12], y=all_ratings_WN[:, 13])
+# on-center vs. off-center line sources:  
+st, p5 = stats.wilcoxon(x=all_ratings_WN[:, 12], y=all_ratings_WN[:, 14])
+# on-center vs. off-center point sources: 
+st, p6 = stats.wilcoxon(x=all_ratings_WN[:, 12], y=all_ratings_WN[:, 15])
+
+# LOWPASS NOISE
+# 8 loudspeakers
+# on-center vs. off-center const. sources:  
+st, p7 = stats.wilcoxon(x=all_ratings_LPWN[:, 8], y=all_ratings_LPWN[:, 9])
+# on-center vs. off-center line sources:  
+st, p8 = stats.wilcoxon(x=all_ratings_LPWN[:, 8], y=all_ratings_LPWN[:, 10])
+# on-center vs. off-center point sources: 
+st, p9 = stats.wilcoxon(x=all_ratings_LPWN[:, 8], y=all_ratings_LPWN[:, 11])
+
+# 12 loudspeakers
+# on-center vs. off-center const. sources: 
+st, p10 = stats.wilcoxon(x=all_ratings_LPWN[:, 12], y=all_ratings_LPWN[:, 13])
+# on-center vs. off-center line sources:  
+st, p11 = stats.wilcoxon(x=all_ratings_LPWN[:, 12], y=all_ratings_LPWN[:, 14])
+# on-center vs. off-center point sources: 
+st, p12 = stats.wilcoxon(x=all_ratings_LPWN[:, 12], y=all_ratings_LPWN[:, 15])
+
+# Statistical tests: Wilcoxon signed rank
+# 2LS vs. 4LS: Effect of white noise (high-frequency content)
+st, p13 = stats.wilcoxon(x=all_ratings_WN[:, 0], y=all_ratings_WN[:, 4])
+# 2LS vs. 4LS: Lowpass noise signal 
+st, p14 = stats.wilcoxon(x=all_ratings_LPWN[:, 0], y=all_ratings_LPWN[:, 4])
+
 
 print('done')
 

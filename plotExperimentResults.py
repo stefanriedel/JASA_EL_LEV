@@ -30,8 +30,6 @@ Interval_Type = Interval_Types[0]
 # Compute Wilcoxon signed-rank tests after plot
 STATS_TESTS = False
 
-rng = np.random.default_rng(2022)
-
 for subj in range(N):
     f_location = pjoin(data_dir, 'subject' + str(subj+1) + '.json')
 
@@ -71,14 +69,13 @@ class median_conf_int:
         self.low = 0
         self.high = 0
 
-
 if Interval_Type == 'CI_Bootstrap':
     # Bootstrap Median CIs
-    data = (all_ratings_WN + np.tile((rng.random(N)-0.5)*0.000001, (32,1)).T, )
+    data = (all_ratings_WN + np.tile((np.random.rand(N)-0.5)*1e-6, (32,1)).T, )
     bstrap = stats.bootstrap(data=data, statistic=np.median, method='BCa', confidence_level=0.95)
     median_conf_int_WN = bstrap.confidence_interval
 
-    data = (all_ratings_LPWN + np.tile((rng.random(N)-0.5)*0.000001, (32,1)).T, )
+    data = (all_ratings_LPWN + np.tile((np.random.rand(N)-0.5)*1e-6, (32,1)).T, )
     bstrap = stats.bootstrap(data=data, statistic=np.median, method='BCa', confidence_level=0.95)
     median_conf_int_LPWN = bstrap.confidence_interval
 if Interval_Type == 'CI_Binomial':
@@ -110,7 +107,7 @@ if Interval_Type == 'IQR':
     median_conf_int_LPWN.low = np.quantile(all_ratings_LPWN, q=0.25, axis=0)
     median_conf_int_LPWN.high = np.quantile(all_ratings_LPWN, q=0.75, axis=0)
 
-
+rng = np.random.default_rng(0)
 # Plot statistical results
 indizes_fr = np.arange(0,16,4)
 indizes_rot = np.arange(16,32,4)

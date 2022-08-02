@@ -1,0 +1,9 @@
+
+*.pyc
+*.txt
+*.gz
+*.gzip
+*.bz2
+*.pkl
+Scripts/
+Lib/

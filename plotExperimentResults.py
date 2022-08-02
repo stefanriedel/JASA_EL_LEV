@@ -234,11 +234,16 @@ for idx in range(num_layouts):
             
         data_style = ['s', 'o']
         for sidx in range(2):
+            if PlotIndividualData:
+                axes[2*idx,n].scatter(xaxis[sidx]+rng.random(N)*0.15 - 0.075, indiv_data[idx,n,sidx,:], s=5, c=data_colors[n], marker=data_style[sidx], alpha=0.2, zorder=1)
             asymmetric_error_CI = [ [medians_NLS[idx,n,sidx]-median_conf_int_NLS_low[idx,n,sidx]], [median_conf_int_NLS_high[idx,n,sidx]-medians_NLS[idx,n,sidx] ]]
             axes[2*idx,n].errorbar(xaxis[sidx], medians_NLS[idx ,n, sidx] , capsize=2.0 ,linestyle='none', xerr=0, yerr=asymmetric_error_CI ,color='k', zorder=2)
-            axes[2*idx,n].plot(xaxis[sidx], medians_NLS[idx,n,sidx], mks[sidx], fillstyle='full', markerfacecolor=mks_clr[sidx], markeredgecolor='k', zorder=3, label='data')
-            if PlotIndividualData:
-                axes[2*idx,n].scatter(xaxis[sidx]+rng.random(N)*0.10 - 0.05, indiv_data[idx,n,sidx,:], s=8, c=data_colors[n], marker=data_style[sidx], alpha=0.15, zorder=1)
+            if sidx == 0:
+                mks_wn, = axes[2*idx,n].plot(xaxis[sidx], medians_NLS[idx,n,sidx], mks[sidx], fillstyle='full', markersize=5, markerfacecolor=mks_clr[sidx], markeredgecolor='k', zorder=3, label='data')
+            else:
+                mks_lp, = axes[2*idx,n].plot(xaxis[sidx], medians_NLS[idx,n,sidx], mks[sidx], fillstyle='full', markersize=5, markerfacecolor=mks_clr[sidx], markeredgecolor='k', zorder=3, label='data')
+
+            
 
 
         if idx == 0:
@@ -282,7 +287,7 @@ cbar = f.colorbar(mpl.cm.ScalarMappable(norm=norm, cmap=cmap), cax=color_bar_ax,
 cbar.ax.set_xticklabels(tick_labels)
 cbar.ax.tick_params(labelsize=8)
 
-f.legend(bbox_to_anchor=(0.1, 0.07, 0.8, 1), loc='lower left',mode='expand', numpoints=1, ncol=2, fancybox = True,
+f.legend(handles=[mks_wn, mks_lp], bbox_to_anchor=(0.1, 0.07, 0.8, 1), loc='lower left',mode='expand', numpoints=1, ncol=2, fancybox = True,
         fontsize='small', labels=['white noise', 'lowpass noise'], framealpha=1)
 
 plt.savefig(fname=pjoin(save_path, 'ExpResults_DiffGrade_' + Interval_Type + '.pdf'), bbox_inches='tight')

@@ -42,8 +42,11 @@ def computeInterauralCues(h_L, h_R, Cov, Lmda, dirs, freq_window, tau_r):
     auto_spectrum_R = np.tile(auto_spectrum_R[np.newaxis,:], (freq_window.shape[0],1)) * freq_window
     cross_spectrum = np.tile(cross_spectrum[np.newaxis,:], (freq_window.shape[0],1)) * freq_window
 
-    P_L = np.max(np.abs( np.fft.irfft(auto_spectrum_L, axis=1))[:,tau_r], axis=1)
-    P_R = np.max(np.abs( np.fft.irfft(auto_spectrum_R, axis=1))[:,tau_r], axis=1)
+    #P_L = np.max(np.abs( np.fft.irfft(auto_spectrum_L, axis=1))[:,tau_r], axis=1)
+    #P_R = np.max(np.abs( np.fft.irfft(auto_spectrum_R, axis=1))[:,tau_r], axis=1)
+    # is equivalent to:
+    P_L = np.fft.irfft(auto_spectrum_L, axis=1)[:,0]
+    P_R = np.fft.irfft(auto_spectrum_R, axis=1)[:,0]  
 
     ILD = 10 * np.log10(P_L / P_R)
 

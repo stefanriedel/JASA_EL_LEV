@@ -59,8 +59,8 @@ for b in range(num_bands):
     auto_spec_r_w = auto_spec_ref_r*window
         
     cross_correlation = np.real(np.fft.irfft(cross_spec_w))
-    P_l = np.max(np.abs( np.fft.irfft(auto_spec_l_w)))
-    P_r = np.max(np.abs( np.fft.irfft(auto_spec_r_w)))
+    P_l = np.fft.irfft(auto_spec_l_w)[0]
+    P_r = np.fft.irfft(auto_spec_r_w)[0]
 
     IC_ref[b] = np.max(np.abs(cross_correlation[tau_range]))  / np.sqrt(P_l * P_r)
     ILD_ref[b] = 10*np.log10(P_l / P_r)
@@ -82,9 +82,6 @@ for stim in range(num_stimuli):
         auto_spec_r_w = auto_spec_stim_r*window
             
         cross_correlation = np.real(np.fft.irfft(cross_spec_w))
-        #P_l = np.max(np.abs( np.fft.irfft(auto_spec_l_w)[tau_range]))
-        #P_r = np.max(np.abs( np.fft.irfft(auto_spec_r_w)[tau_range]))
-        # is equivalent to:
         P_l = np.fft.irfft(auto_spec_l_w)[0]
         P_r = np.fft.irfft(auto_spec_r_w)[0]
 

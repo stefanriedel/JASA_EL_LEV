@@ -48,7 +48,7 @@ if __name__ == '__main__':
     RECTANGULAR_ARRAY = False
     if not RECTANGULAR_ARRAY:
         # get coordinates for circular array with nLS sources
-        nLS = 4
+        nLS = 8
         x_ls, y_ls, phi_ls = getCircularArray(nLS=nLS, offset_degree=45)
     else:
         # get coordinates for rectangular array

@@ -2,54 +2,32 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 from os.path import dirname, join as pjoin
+import os
 from Utility.sweetAreaUtility import getCircularArray, getRectangularArray, computeInterauralCues
 from joblib import Parallel, delayed
+import cmasher as cmr
+
 
 if __name__ == '__main__':
+    TRY_LOAD_PRECOMPUTED = True
+
     # Define directory for saving figures
     root_dir = dirname(__file__)
     save_path = pjoin(root_dir, 'Figures')
     utility_path = pjoin(root_dir, 'Utility')
-
-    #Load gammatone magnitude windows, precomputed using the 'pyfilterbank' library
-    # https://github.com/SiggiGue/pyfilterbank
-    filename = 'gammatone_erb_mag_windows_nfft_1024_numbands_320.npy'
-    gammatone_mag_win = np.load(pjoin(utility_path, filename))
-    Nfft = int((gammatone_mag_win.shape[1]-1) * 2)
-    num_bands = gammatone_mag_win.shape[0]
-    filename = 'gammatone_fc_numbands_320_fs_48000.npy'
-    f_c = np.load(pjoin(utility_path, filename))
-
-    # ERB scale requires using every 8th of the 320 windows
-    f_c = f_c[::8]
-    gammatone_mag_win = gammatone_mag_win[::8] 
-    USE_GAMMATONE_WINDOWS = True
-
-    # Load HRTF set
-    hrir = np.load(file='./Utility/HRIR_CIRC360_48kHz.npy')
-    fs = 48000
-    #Nfft = 1024
-    f = np.linspace(0,fs/2, num=int(Nfft/2+1))
-    hrtf = np.fft.rfft(hrir, n=Nfft, axis=-1) 
-    h_L = hrtf[:,0,:]
-    h_R = hrtf[:,1,:]
 
     # Define meshgrid resolution and simulation area
     res = 40    
     array_radius = 1
     area_len = 1.1
 
-    # Define head rotations used for evaluation of IC and ILD
-    rotations = np.array([0,30,60,90,120,150,-180,-150,-120,-90,-60,-30])   # set between -180 and 180
-    # -> if needed, reduce res and rotations to speed up the computation time
-    # alternatively, set USE_GAMMATONE_WINDOWS = False, to use single broadband window
-
+    USE_GAMMATONE_WINDOWS = True
     # Specify simulated layout
     RECTANGULAR_ARRAY = False
     if not RECTANGULAR_ARRAY:
         # get coordinates for circular array with nLS sources
-        nLS = 4
-        x_ls, y_ls, phi_ls = getCircularArray(nLS=nLS, offset_degree=45)
+        nLS = 6
+        x_ls, y_ls, phi_ls = getCircularArray(nLS=nLS, offset_degree=0)
     else:
         # get coordinates for rectangular array
         array_width = 0.6
@@ -75,87 +53,132 @@ if __name__ == '__main__':
     [listener_X, listener_Y] = np.meshgrid(x,y)
     listener = np.vstack( (listener_X.flatten(), listener_Y.flatten()) ).transpose()
 
-    num_rotations = rotations.size
-    num_listener_pos = listener.shape[0]
-    num_source_pos = ls.shape[0]
+    LOADING_FAILED = True
+    if TRY_LOAD_PRECOMPUTED:
+        # Load precomputed data for fast plotting
+        if os.path.isfile(pjoin(save_path, 'LEV_ILD_Data_' + str(x_ls.size) + 'LS.npy')):
+            LEV_ILD = np.load(pjoin(save_path, 'LEV_ILD_Data_' + str(x_ls.size) + 'LS.npy'))
+            LOADING_FAILED = False
 
-    theta = np.zeros((num_source_pos, 2, num_listener_pos))
+        if os.path.isfile(pjoin(save_path, 'LEV_IC_Data_' + str(x_ls.size) + 'LS.npy')):
+            LEV_IC = np.load(pjoin(save_path, 'LEV_IC_Data_' + str(x_ls.size) + 'LS.npy'))
+            LOADING_FAILED = False
 
-    ls = np.tile(ls[:,:,np.newaxis], (1,1,num_listener_pos))
-    listener = listener.transpose()
-    listener = np.tile(listener[np.newaxis, :, :], (num_source_pos, 1, 1))
+    if not TRY_LOAD_PRECOMPUTED or LOADING_FAILED:
+        #Load gammatone magnitude windows, precomputed using the 'pyfilterbank' library
+        # https://github.com/SiggiGue/pyfilterbank
+        filename = 'gammatone_erb_mag_windows_nfft_1024_numbands_320.npy'
+        gammatone_mag_win = np.load(pjoin(utility_path, filename))
+        Nfft = int((gammatone_mag_win.shape[1]-1) * 2)
+        num_bands = gammatone_mag_win.shape[0]
+        filename = 'gammatone_fc_numbands_320_fs_48000.npy'
+        f_c = np.load(pjoin(utility_path, filename))
 
-    theta = ls - listener
+        # ERB scale requires using every 8th of the 320 windows
+        f_c = f_c[::8]
+        gammatone_mag_win = gammatone_mag_win[::8] 
 
-    r = np.linalg.norm(theta, axis=1)
-    r = np.tile(r[:,np.newaxis,:], (1,2,1))
-
-    theta_norm = theta  / r
-    r_norm = r / np.tile(np.min(r, axis=0)[np.newaxis,:,:] , (num_source_pos,1,1))
-    r_norm = r_norm[:,0,:]  #normalized relative distance to sources (remove tiling) 
-
-    source_phi = np.arctan2(theta_norm[:,1,:] , theta_norm[:,0,:]) / np.pi * 180.0 #+ 90.0
-    source_phi = source_phi.astype(np.int32)
-
-    LEV_ILD = np.zeros((num_source_models,num_listener_pos, num_rotations))
-    LEV_IC = np.zeros((num_source_models,num_listener_pos,num_rotations))
-
-    if USE_GAMMATONE_WINDOWS:
-        # computes mean IC/ILD across gammatone windows, more costly
-        low_lim = int(np.where(f_c>=400)[0][0])
-        up_lim = int(np.where(f_c>=6000)[0][0])
-        freq_window = gammatone_mag_win[low_lim:up_lim,:]
-    else:
-        # define frequency limits for a single binary window
-        low_lim = int(np.where(f>=400)[0][0])
-        up_lim = int(np.where(f>=6000)[0][0])
-        freq_window = np.zeros(int(Nfft/2+1))
-        freq_window[low_lim:up_lim] = 1
-        freq_window = freq_window[np.newaxis,:]
-
-    # tau search range, typically +- 1 millisecond
-    tau_r = np.arange(-int(fs/1000),int(fs/1000))
-
-    def mainLoopSourceModels(s):
-        LEV_IC_tmp = np.zeros((num_listener_pos, num_rotations))
-        LEV_ILD_tmp = np.zeros((num_listener_pos, num_rotations))
-
-        source_model = source_models[s]
-
-        if source_model == 'point':
-            w_r = 1 / r_norm
-        if source_model == 'line':
-            w_r = 1 / r_norm**(0.5)
-        if source_model == 'const':
-            w_r = 1 / np.ones(r_norm.shape)
-
-        for rot in range(num_rotations):
-            for p in range(num_listener_pos):
-                idcs = source_phi[:,p] + rotations[rot]
-                Lmda = np.diag(w_r[:,p])
-                IC, ILD = computeInterauralCues(h_L, h_R, Cov, Lmda, idcs, freq_window, tau_r)
-                LEV_IC_tmp[p,rot] = 1 - IC
-                LEV_ILD_tmp[p,rot] = -np.abs(ILD)
-
-        return LEV_IC_tmp, LEV_ILD_tmp
-
-    print('Main simulation loop started... \n')
-    result_lists = Parallel(n_jobs=3)(delayed(mainLoopSourceModels)(s) for s in range(num_source_models))
-    print('Plot is being saved to .\Figures now.')
-
-    res_arr = np.asarray(result_lists)
-
-    for s in range(num_source_models):
-        LEV_IC[s,:,:] = res_arr[s,0,:,:]
-        LEV_ILD[s,:,:] = res_arr[s,1,:,:]
-
-    LEV_ILD = np.min(LEV_ILD, axis=-1)
-    LEV_IC = np.min(LEV_IC, axis=-1)
-
-    LEV_ILD = np.reshape(LEV_ILD, (num_source_models, res,res))
-    LEV_IC = np.reshape(LEV_IC, (num_source_models, res,res))
+        # Load HRTF set
+        hrir = np.load(file='./Utility/HRIR_CIRC360_48kHz.npy')
+        fs = 48000
+        #Nfft = 1024
+        f = np.linspace(0,fs/2, num=int(Nfft/2+1))
+        hrtf = np.fft.rfft(hrir, n=Nfft, axis=-1) 
+        h_L = hrtf[:,0,:]
+        h_R = hrtf[:,1,:]
 
 
+
+        # Define head rotations used for evaluation of IC and ILD
+        rotations = np.array([0,30,60,90,120,150,-180,-150,-120,-90,-60,-30])   # set between -180 and 180
+        # -> if needed, reduce res and rotations to speed up the computation time
+        # alternatively, set USE_GAMMATONE_WINDOWS = False, to use single broadband window
+
+        num_rotations = rotations.size
+        num_listener_pos = listener.shape[0]
+        num_source_pos = ls.shape[0]
+
+        theta = np.zeros((num_source_pos, 2, num_listener_pos))
+
+        ls = np.tile(ls[:,:,np.newaxis], (1,1,num_listener_pos))
+        listener = listener.transpose()
+        listener = np.tile(listener[np.newaxis, :, :], (num_source_pos, 1, 1))
+
+        theta = ls - listener
+
+        r = np.linalg.norm(theta, axis=1)
+        r = np.tile(r[:,np.newaxis,:], (1,2,1))
+
+        theta_norm = theta  / r
+        r_norm = r / np.tile(np.min(r, axis=0)[np.newaxis,:,:] , (num_source_pos,1,1))
+        r_norm = r_norm[:,0,:]  #normalized relative distance to sources (remove tiling) 
+
+        source_phi = np.arctan2(theta_norm[:,1,:] , theta_norm[:,0,:]) / np.pi * 180.0 #+ 90.0
+        source_phi = source_phi.astype(np.int32)
+
+        LEV_ILD = np.zeros((num_source_models,num_listener_pos, num_rotations))
+        LEV_IC = np.zeros((num_source_models,num_listener_pos,num_rotations))
+
+        if USE_GAMMATONE_WINDOWS:
+            # computes mean IC/ILD across gammatone windows, more costly
+            low_lim = int(np.where(f_c>=400)[0][0])
+            up_lim = int(np.where(f_c>=6000)[0][0])
+            freq_window = gammatone_mag_win[low_lim:up_lim,:]
+        else:
+            # define frequency limits for a single binary window
+            low_lim = int(np.where(f>=400)[0][0])
+            up_lim = int(np.where(f>=6000)[0][0])
+            freq_window = np.zeros(int(Nfft/2+1))
+            freq_window[low_lim:up_lim] = 1
+            freq_window = freq_window[np.newaxis,:]
+
+        # tau search range, typically +- 1 millisecond
+        tau_r = np.arange(-int(fs/1000),int(fs/1000))
+
+        def mainLoopSourceModels(s):
+            LEV_IC_tmp = np.zeros((num_listener_pos, num_rotations))
+            LEV_ILD_tmp = np.zeros((num_listener_pos, num_rotations))
+
+            source_model = source_models[s]
+
+            if source_model == 'point':
+                w_r = 1 / r_norm
+            if source_model == 'line':
+                w_r = 1 / r_norm**(0.5)
+            if source_model == 'const':
+                w_r = 1 / np.ones(r_norm.shape)
+
+            for rot in range(num_rotations):
+                for p in range(num_listener_pos):
+                    idcs = source_phi[:,p] + rotations[rot]
+                    Lmda = np.diag(w_r[:,p])
+                    IC, ILD = computeInterauralCues(h_L, h_R, Cov, Lmda, idcs, freq_window, tau_r)
+                    LEV_IC_tmp[p,rot] = 1 - IC
+                    LEV_ILD_tmp[p,rot] = -np.abs(ILD)
+
+            return LEV_IC_tmp, LEV_ILD_tmp
+
+        print('Main simulation loop started... \n')
+        result_lists = Parallel(n_jobs=3)(delayed(mainLoopSourceModels)(s) for s in range(num_source_models))
+        print('Plot is being saved to .\Figures now.')
+
+        res_arr = np.asarray(result_lists)
+
+        for s in range(num_source_models):
+            LEV_IC[s,:,:] = res_arr[s,0,:,:]
+            LEV_ILD[s,:,:] = res_arr[s,1,:,:]
+
+        LEV_ILD = np.min(LEV_ILD, axis=-1)
+        LEV_IC = np.min(LEV_IC, axis=-1)
+
+        LEV_ILD = np.reshape(LEV_ILD, (num_source_models, res,res))
+        LEV_IC = np.reshape(LEV_IC, (num_source_models, res,res))
+
+        np.save(pjoin(save_path, 'LEV_ILD_Data_' + str(x_ls.size) + 'LS'), LEV_ILD)
+        np.save(pjoin(save_path, 'LEV_IC_Data_' + str(x_ls.size) + 'LS'), LEV_IC)
+
+
+    num_source_models = 3
     scale = 0.8
     fig, axes = plt.subplots(nrows=2, ncols=num_source_models, figsize=(12*scale,8*scale), sharex=True, sharey=True)
     fig.subplots_adjust(wspace=0.05, hspace=0.05)
@@ -183,6 +206,8 @@ if __name__ == '__main__':
     #clrs = ['0.25', '0.5', '0.75', '1.0']
     import matplotlib
     cmap = matplotlib.cm.get_cmap('BuPu_r')
+    #cmap = cmr.arctic
+
     #clrs = [cmap(0.4), cmap(0.6), cmap(0.8), cmap(1.0)]
     clrs = [cmap(0.5), cmap(0.6), cmap(0.8), '1.0']
 
@@ -222,8 +247,8 @@ if __name__ == '__main__':
             axes[r,c].yaxis.set_ticks_position("right")
 
             # Marker for on-center and off-center position of experiment
-            axes[r,c].scatter(0,0,s=30,marker='x', edgecolors='k', c='k')
-            axes[r,c].scatter(0.5,0,s=30,marker='x', edgecolors='k', c='k')
+            axes[r,c].scatter(0,0,s=30,marker='x', c='k')
+            axes[r,c].scatter(0.5,0,s=30,marker='x', c='k')
 
             
             # Source / Loudspeaker icon drawing

@@ -5,11 +5,11 @@ from os.path import dirname, join as pjoin
 import os
 from Utility.sweetAreaUtility import getCircularArray, getRectangularArray, computeInterauralCues
 from joblib import Parallel, delayed
-import cmasher as cmr
 
 
 if __name__ == '__main__':
     TRY_LOAD_PRECOMPUTED = True
+    DRAW_EXPERIMENT_POSITIONS = True
 
     # Define directory for saving figures
     root_dir = dirname(__file__)
@@ -26,11 +26,11 @@ if __name__ == '__main__':
     RECTANGULAR_ARRAY = False
     if not RECTANGULAR_ARRAY:
         # get coordinates for circular array with nLS sources
-        nLS = 8
-        x_ls, y_ls, phi_ls = getCircularArray(nLS=nLS, offset_degree=0)
+        nLS = 4
+        x_ls, y_ls, phi_ls = getCircularArray(nLS=nLS, offset_degree=45)
     else:
         # get coordinates for rectangular array
-        array_width = 0.6
+        array_width = 0.8
         array_length = 1.0
         x_ls, y_ls, phi_ls, draw_rot = getRectangularArray(nLS_lateral=5, nLS_frontback=3, 
         array_width=array_width, array_length=array_length, off_x=2, off_y=1)
@@ -210,7 +210,6 @@ if __name__ == '__main__':
     #clrs = ['0.25', '0.5', '0.75', '1.0']
     import matplotlib
     cmap = matplotlib.cm.get_cmap('BuPu_r')
-    #cmap = cmr.amethyst
 
     #clrs = [cmap(0.4), cmap(0.6), cmap(0.8), cmap(1.0)]
     clrs = [cmap(0.5), cmap(0.6), cmap(0.8), '1.0']
@@ -232,8 +231,7 @@ if __name__ == '__main__':
                 if c == 0:
                     axes[r,c].set_ylabel('IC', fontsize=font_sz, labelpad=48)
                     #axes[r,c].yaxis.set_label_position("right")
-            #pcm = axes[r,c].contourf(listener_X,listener_Y, LEV, levels=cont_lvls, cmap=cmap, zorder=1, vmin=vmins[r], vmax=vmaxs[r])
-            pcm = axes[r,c].pcolormesh(listener_X,listener_Y, LEV, cmap=cmap, zorder=1, vmin=vmins[r], vmax=vmaxs[r])
+            pcm = axes[r,c].pcolormesh(listener_X,listener_Y, LEV, cmap=cmap, zorder=1, vmin=vmins[r], vmax=vmaxs[r], shading='gouraud')
 
 
             if c == num_source_models-1:
@@ -261,8 +259,9 @@ if __name__ == '__main__':
             axes[r,c].yaxis.set_ticks_position("right")
 
             # Marker for on-center and off-center position of experiment
-            axes[r,c].scatter(0,0,s=30,marker='x', c='k')
-            axes[r,c].scatter(0.5,0,s=30,marker='x', c='k')
+            if DRAW_EXPERIMENT_POSITIONS:
+                axes[r,c].scatter(0,0,s=30,marker='x', c='k')
+                axes[r,c].scatter(0.5,0,s=30,marker='x', c='k')
 
             
             # Source / Loudspeaker icon drawing

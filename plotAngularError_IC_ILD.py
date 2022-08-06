@@ -7,7 +7,7 @@ root_dir = dirname(__file__)
 utility_path = pjoin(root_dir, 'Utility')
 data_dir = pjoin(root_dir, 'ExperimentData')
 # Path to store figures
-save_path = pjoin(root_dir, 'Figures')
+save_path = pjoin(root_dir, 'Figures', 'AngularError_IC_ILD')
 
 #Load gammatone magnitude windows, precomputed using the 'pyfilterbank' library
 # https://github.com/SiggiGue/pyfilterbank

@@ -8,7 +8,7 @@ import scipy.stats as stats
 
 root_dir = dirname(__file__)
 data_dir = pjoin(root_dir, 'ExperimentData')
-save_path = pjoin(root_dir, 'Figures')
+save_path = pjoin(root_dir, 'Figures', 'ExperimentResults')
 
 # Load loadspeaker gain map according to listening experiment
 # Used for visualization of experiment conditions

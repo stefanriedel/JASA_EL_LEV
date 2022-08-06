@@ -7,7 +7,7 @@ root_dir = dirname(__file__)
 utility_path = pjoin(root_dir, 'Utility')
 data_dir = pjoin(root_dir, 'ExperimentData')
 # Path to store figures
-save_path = pjoin(root_dir, 'Figures')
+save_path = pjoin(root_dir, 'Figures', 'FreqDependent_IC_ILD')
 
 # Load loadspeaker gain map according to listening experiment
 with open(pjoin(data_dir, 'map.npy'), 'rb') as f:

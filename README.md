@@ -22,9 +22,9 @@ plots interaural coherence and level difference over frequency, showing influenc
   
 All plots are directly saved to the 'Figures' subfolder without pop-up figure windows.
 
-In the 'Figures' directory you can find many pre-rendered plots. Here one of the key plots showing that line sources provide the largest area of optimal cues for envelopment: a low interaural level difference (< 1dB) and a low interaural coherence (< 0.4). 
+In the 'Figures' directory you can find many pre-rendered plots. The following plot shows that line sources provide the largest area of optimal cues for envelopment: a low interaural level difference (< 1dB) and a low interaural coherence (< 0.4). 
 
 <img src="/Figures/ListeningArea_IC_ILD/12LS_sweet_area_ERB.jpg" alt="drawing" width="500"/>
 
-Here another example of a rectangular loudspeaker setup, which is typical for cinema sound systems:
+Here is an example of a rectangular loudspeaker setup, which is typical for venues like movie theaters:
 <img src="/Figures/ListeningArea_IC_ILD/RECT_80wide100long_16LS_sweet_area_ERB.jpg" alt="drawing" width="500"/>

@@ -1,5 +1,5 @@
 # JASA_EL_LEV
-This repository hosts python code and data of publication 'Surrounding line sources optimally reproduce diffuse envelopment at off-center listening positions'. In the paper we show that for the horizontal layer of a surround sound system, line sources are preferable over the typical point source loudspeakers. This is due to their sound pressure decay of only -3dB per distance doubling, compared to the -6 dB per distance doubling of point-source loudspeakers.
+This repository hosts python code and data of publication 'Surrounding line sources optimally reproduce diffuse envelopment at off-center listening positions'. In the paper we show that for the horizontal layer of a surround sound system, line sources are preferable over the typical point-source loudspeakers.
 
 Dependencies:
 * numpy

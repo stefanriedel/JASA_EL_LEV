@@ -9,12 +9,13 @@ from joblib import Parallel, delayed
 
 if __name__ == '__main__':
     TRY_LOAD_PRECOMPUTED = True
-    DRAW_EXPERIMENT_POSITIONS = True
+    DRAW_EXPERIMENT_POSITIONS = False
     outfile_format = '.pdf'
 
     # Define directory for saving figures
     root_dir = dirname(__file__)
-    save_path = pjoin(root_dir, 'Figures')
+    save_path = pjoin(root_dir, 'Figures', 'ListeningArea_IC_ILD')
+    fig_data_path = pjoin(root_dir, 'Figures', 'NumpyData')
     utility_path = pjoin(root_dir, 'Utility')
 
     # Define meshgrid resolution and simulation area
@@ -54,18 +55,21 @@ if __name__ == '__main__':
     [listener_X, listener_Y] = np.meshgrid(x,y)
     listener = np.vstack( (listener_X.flatten(), listener_Y.flatten()) ).transpose()
 
-    LOADING_FAILED = True
+    LOADING_ILD_DATA_FAILED = True
+    LOADING_IC_DATA_FAILED = True
     if TRY_LOAD_PRECOMPUTED:
         # Load precomputed data for fast plotting
-        if os.path.isfile(pjoin(save_path, 'LEV_ILD_Data_' + str(x_ls.size) + 'LS.npy')):
-            LEV_ILD = np.load(pjoin(save_path, 'LEV_ILD_Data_' + str(x_ls.size) + 'LS.npy'))
-            LOADING_FAILED = False
+        path_to_ILD = pjoin(fig_data_path, 'LEV_ILD_Data_' + str(x_ls.size) + 'LS.npy')
+        if os.path.isfile(path_to_ILD):
+            LEV_ILD = np.load(path_to_ILD)
+            LOADING_ILD_DATA_FAILED = False
 
-        if os.path.isfile(pjoin(save_path, 'LEV_IC_Data_' + str(x_ls.size) + 'LS.npy')):
-            LEV_IC = np.load(pjoin(save_path, 'LEV_IC_Data_' + str(x_ls.size) + 'LS.npy'))
-            LOADING_FAILED = False
+        path_to_IC = pjoin(fig_data_path, 'LEV_IC_Data_' + str(x_ls.size) + 'LS.npy')
+        if os.path.isfile(path_to_IC):
+            LEV_IC = np.load(path_to_IC)
+            LOADING_IC_DATA_FAILED = False
 
-    if not TRY_LOAD_PRECOMPUTED or LOADING_FAILED:
+    if not TRY_LOAD_PRECOMPUTED or LOADING_ILD_DATA_FAILED or LOADING_IC_DATA_FAILED:
         #Load gammatone magnitude windows, precomputed using the 'pyfilterbank' library
         # https://github.com/SiggiGue/pyfilterbank
         filename = 'gammatone_erb_mag_windows_nfft_1024_numbands_320.npy'
@@ -307,9 +311,9 @@ if __name__ == '__main__':
         add_string = ''
 
     if not RECTANGULAR_ARRAY:
-        plt.savefig(fname=pjoin(save_path, str(nLS) + 'LS_sweet_area' + add_string + outfile_format), bbox_inches='tight', dpi=200)
+        plt.savefig(fname=pjoin(save_path, str(nLS) + 'LS_sweet_area' + add_string + outfile_format), bbox_inches='tight', dpi=100)
     else:
         plt.savefig(fname=pjoin(save_path, 'RECT_' + str(int(array_width*100)) + 'wide' + 
-        str(int(array_length*100)) + 'long_' + str(phi_ls.size) + 'LS_sweet_area' + add_string + outfile_format), bbox_inches='tight', dpi=200)
+        str(int(array_length*100)) + 'long_' + str(phi_ls.size) + 'LS_sweet_area' + add_string + outfile_format), bbox_inches='tight', dpi=100)
 
 

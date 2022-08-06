@@ -1,5 +1,5 @@
 # JASA_EL_LEV
-This repository hosts python code and data of publication 'Surrounding line sources optimally reproduce diffuse envelopment at off-center listening positions'. In the paper we show that for the horizontal layer of a surround sound system, line sources are preferable over the typical point-source loudspeakers.
+This repository hosts python code and data of publication 'Surrounding line sources optimally reproduce diffuse envelopment at off-center listening positions'. In the paper we show that the main (horizontal) layer of a surround sound system should employ line sources instead of the typical point-source loudspeakers, in order to achieve a large area of optimal listener envelopment.
 
 Dependencies:
 * numpy

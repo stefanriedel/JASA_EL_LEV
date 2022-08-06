@@ -10,6 +10,7 @@ from joblib import Parallel, delayed
 if __name__ == '__main__':
     TRY_LOAD_PRECOMPUTED = True
     DRAW_EXPERIMENT_POSITIONS = True
+    outfile_format = '.pdf'
 
     # Define directory for saving figures
     root_dir = dirname(__file__)
@@ -26,8 +27,8 @@ if __name__ == '__main__':
     RECTANGULAR_ARRAY = False
     if not RECTANGULAR_ARRAY:
         # get coordinates for circular array with nLS sources
-        nLS = 4
-        x_ls, y_ls, phi_ls = getCircularArray(nLS=nLS, offset_degree=45)
+        nLS = 12
+        x_ls, y_ls, phi_ls = getCircularArray(nLS=nLS, offset_degree=0)
     else:
         # get coordinates for rectangular array
         array_width = 0.8
@@ -237,8 +238,8 @@ if __name__ == '__main__':
             if c == num_source_models-1:
                 color_bar_ax = fig.add_axes(cbar_pos_size[r])
                 cbar = fig.colorbar(pcm, cax=color_bar_ax)
-                cbar.ax.set_yticks(lvls)
-                cbar.ax.set_yticklabels(cbar_ticklabels[r])
+                cbar.set_ticks(lvls)
+                cbar.set_ticklabels(cbar_ticklabels[r])
                 cbar.ax.tick_params(labelsize=12)
                 cbar.ax.yaxis.set_ticks_position('left')
 
@@ -306,9 +307,9 @@ if __name__ == '__main__':
         add_string = ''
 
     if not RECTANGULAR_ARRAY:
-        plt.savefig(fname=pjoin(save_path, str(nLS) + 'LS_sweet_area' + add_string + '.pdf'), bbox_inches='tight')
+        plt.savefig(fname=pjoin(save_path, str(nLS) + 'LS_sweet_area' + add_string + outfile_format), bbox_inches='tight', dpi=200)
     else:
         plt.savefig(fname=pjoin(save_path, 'RECT_' + str(int(array_width*100)) + 'wide' + 
-        str(int(array_length*100)) + 'long_' + str(phi_ls.size) + 'LS_sweet_area' + add_string + '.pdf'), bbox_inches='tight')
+        str(int(array_length*100)) + 'long_' + str(phi_ls.size) + 'LS_sweet_area' + add_string + outfile_format), bbox_inches='tight', dpi=200)
 
 

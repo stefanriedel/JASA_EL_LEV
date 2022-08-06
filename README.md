@@ -8,17 +8,19 @@ Dependencies:
 * joblib
   
   
+*plotListeningArea_IC_ILD.py*:  
+plots interaural cues across a simulated listening area for multi-source arrangements. 
+
 *plotExperimentResults.py*:  
 plots statistics of experiment results with visualizations of conditions.  
   
-*plotGammatone_IC_ILD.py*:  
-plots interaural coherence and level difference over frequency for specified conditions of the experiment.  
+*plotFreqDependent_IC_ILD.py*:  
+plots interaural coherence and level difference over frequency for specified conditions of the listening experiment.  
   
-*sweetAreaLEVBinaural.py*:  
-plots interaural cues across a simulated listening area for multi-source arrangements.    
+*plotAngularError_IC_ILD.py*:  
+plots interaural coherence and level difference over frequency, showing influence of angular error of the discrete remapping used in experiment.  
   
 All plots are directly saved to the 'Figures' subfolder without pop-up figure windows.
-
 
 In the 'Figures' directory you can find many pre-rendered plots. Here one of the key plots showing that line sources provide the largest area of optimal cues for envelopment: a low interaural level difference (< 1dB) and a low interaural coherence (< 0.4). 
 

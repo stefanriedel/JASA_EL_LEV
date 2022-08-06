@@ -22,5 +22,5 @@ All plots are directly saved to the 'Figures' subfolder without pop-up figure wi
 
 Background information:
 
-![alt text](/Figures/12LS_sweet_area_ERB_BuPu_Cont.pdf)
+![alt text](/Figures/12LS_sweet_area_ERB.png)
 

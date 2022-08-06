@@ -22,7 +22,7 @@ plots interaural coherence and level difference over frequency, showing influenc
   
 All plots are directly saved to the 'Figures' subfolder without pop-up figure windows.
 
-In the 'Figures' directory you can find many pre-rendered plots. The following plot shows that line sources provide the largest area of optimal cues for envelopment: a low interaural level difference (< 1dB) and a low interaural coherence (< 0.4). 
+In the 'Figures' directory you can find many pre-rendered plots. The following plot shows that line sources provide the largest area of optimal cues for envelopment: a low interaural level difference (< 1dB) and a low interaural coherence (< 0.4). Here we assume the loudspeakers to play incoherent sound signals (diffuse-field reproduction).
 
 <img src="/Figures/ListeningArea_IC_ILD/12LS_sweet_area_ERB.jpg" alt="drawing" width="500"/>
 

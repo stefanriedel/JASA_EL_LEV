@@ -134,9 +134,8 @@ for rot in rotations:
             hrtf_reference_map[cond_idx, -angular_ref_map] = level_map
             cond_idx += 1
 
-#with open('map.npy', 'wb') as f:
-#    np.save(f, exp_approx_map)
 
+#np.save(pjoin(data_dir, 'map.npy'), exp_approx_map)
 np.save(pjoin(data_dir, 'approx_map.npy'), hrtf_approx_map)
 np.save(pjoin(data_dir, 'exact_map.npy'), hrtf_reference_map)
             

@@ -24,6 +24,10 @@ In the Figures folder you can find many prerendered plots of circular and rectan
 
 ![alt text](/Figures/12LS_sweet_area_ERB.jpg)
 
+Smaller figure:
+<img src="/Figures/12LS_sweet_area_ERB.jpg" alt="drawing" width="100"/>
+
+
 Here an example of a rectangular setup, as is typical for cinema sound systems:
 
 ![alt text](/Figures/RECT_80wide100long_16LS_sweet_area_ERB.jpg)

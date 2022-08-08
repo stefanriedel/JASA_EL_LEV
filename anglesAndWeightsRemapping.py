@@ -2,8 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from os.path import dirname, join as pjoin
 
-# Script to compute signal remapping and weighting for experiment conditions
-# Ideal and (actual) remapped angles are exported for error estimation
+# Script to compute signal remapping and weighting for experiment conditions (map.npy)
+# Additionally, ideal and (actual) remapped angles are exported for error estimation
 
 root_dir = dirname(__file__)
 utility_path = pjoin(root_dir, 'Utility')
@@ -41,15 +41,6 @@ exp_approx_map = np.zeros((32, nLS), dtype=float)
 # Maps used for error estimation with 360-deg HRTF set
 hrtf_approx_map = np.zeros((32, 360), dtype=float)
 hrtf_reference_map = np.zeros((32, 360), dtype=float)
-
-
-# Load the HRIR of KU100 dummy head
-hrir = np.load(file='./Utility/HRIR_CIRC360_48kHz.npy')
-Nfft = 4096
-hrtf = np.fft.rfft(hrir ,n=Nfft,axis=-1)
-h_L = hrtf[:,0,:]
-h_R = hrtf[:,1,:]
-fs = 48000
 
 DEBUG_PLOT = False
 

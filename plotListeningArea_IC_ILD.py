@@ -29,11 +29,11 @@ if __name__ == '__main__':
     RECTANGULAR_ARRAY = False
     if not RECTANGULAR_ARRAY:
         # get coordinates for circular array with nLS sources
-        nLS = 8
+        nLS = 12
         x_ls, y_ls, phi_ls = getCircularArray(nLS=nLS, offset_degree=0)
     else:
         # get coordinates for rectangular array
-        array_width = 0.8
+        array_width = 0.6
         array_length = 1.0
         x_ls, y_ls, phi_ls, draw_rot = getRectangularArray(nLS_lateral=5, nLS_frontback=3, 
         array_width=array_width, array_length=array_length, off_x=2, off_y=1)
@@ -236,7 +236,6 @@ if __name__ == '__main__':
                     axes[r,c].set_ylabel('IC', fontsize=font_sz, labelpad=48)
             pcm = axes[r,c].pcolormesh(listener_X,listener_Y, LEV, cmap=cmap, zorder=1, vmin=vmins[r], vmax=vmaxs[r], shading='gouraud')
 
-
             if c == num_source_models-1:
                 color_bar_ax = fig.add_axes(cbar_pos_size[r])
                 cbar = fig.colorbar(pcm, cax=color_bar_ax)
@@ -267,9 +266,9 @@ if __name__ == '__main__':
                     axes[r,c].scatter(0,0,s=30,marker='*', c='k', label='{0:.2f}'.format(round(1 - LEV_IC[c,22,22], 2)))
             if DRAW_OFFCENTER_POS_MARKER:
                 if r == 0:
-                    axes[r,c].scatter(0.5,0,s=30,marker='x', c='k', label='{0:.2f}'.format(round(np.abs(LEV_ILD[c,32,22]), 2)))                   
+                    axes[r,c].scatter(0.5,0,s=30,marker='x', c='k', label='{0:.2f}'.format(round(np.abs(LEV_ILD[c,22,32]), 2)))                   
                 if r == 1:
-                    axes[r,c].scatter(0.5,0,s=30,marker='x', c='k', label='{0:.2f}'.format(round(1 - LEV_IC[c,32,22], 2)))                    
+                    axes[r,c].scatter(0.5,0,s=30,marker='x', c='k', label='{0:.2f}'.format(round(1 - LEV_IC[c,22,32], 2)))                    
 
             axes[r,c].legend(loc=(0.785,0.01), fontsize=10, handletextpad=0.1, handlelength=1.0, labelspacing=0.1, framealpha=0.9, borderpad=0.1)
 

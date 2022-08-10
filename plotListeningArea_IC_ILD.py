@@ -9,7 +9,7 @@ from joblib import Parallel, delayed
 
 if __name__ == '__main__':
     TRY_LOAD_PRECOMPUTED = True
-    DRAW_EXPERIMENT_POSITIONS = False
+    DRAW_EXPERIMENT_POSITIONS = True
     outfile_format = '.pdf'
 
     # Define directory for saving figures
@@ -189,18 +189,16 @@ if __name__ == '__main__':
     fig.subplots_adjust(wspace=0.05, hspace=0.05)
 
     ILD_lvls = np.array([-10,-6,-3,-1,0])
-    ILD_cont_lvls = np.arange(-10,0,0.1)
-
-    IC_lvls = np.array([0.0, 0.2, 0.4, 0.6, 1.0])
-    IC_cont_lvls = np.arange(0,1,0.01)
-
+    #IC_lvls = np.array([0.0, 0.2, 0.4, 0.6, 1.0])
+    IC_lvls = np.array([0.0, 0.2, 0.5, 1.0])
 
     LEV_ILD = np.clip(LEV_ILD, a_min=-9.9, a_max=0.0)
 
     font_sz = 18
 
-    cbar_ticklabels = [['10','6','3','1','0'],  ['1.0', '0.8' , '0.6', '0.4', '0.0'] ]
-    #cbar_ticklabels = [['10.0','6.0','3.0','1.0','0.0'],  ['1.0', '0.8' , '0.6', '0.4', '0.0'] ]
+    #cbar_ticklabels = [['10','6','3','1','0'],  ['1.0', '0.8' , '0.6', '0.4', '0.0'] ]
+    cbar_ticklabels = [['10','6','3','1','0'],  ['1.0', '0.8', '0.5', '0.0'] ]
+
 
     #cbar_pos_size = [[0.92, 0.51, 0.01, 0.37], [0.92, 0.11, 0.01, 0.37]]
     cbar_pos_size = [[0.1, 0.54, 0.01, 0.30], [0.1, 0.15, 0.01, 0.30]]
@@ -224,7 +222,6 @@ if __name__ == '__main__':
             if r == 0:
                 LEV = LEV_ILD[c,:]
                 lvls = ILD_lvls
-                cont_lvls = ILD_cont_lvls
                 axes[r,c].set_title(titles[c], fontsize=font_sz)
                 if c == 0:
                     axes[r,c].set_ylabel('|ILD| in dB', fontsize=font_sz, labelpad=48)
@@ -232,7 +229,6 @@ if __name__ == '__main__':
             if r == 1:
                 LEV = LEV_IC[c,:]
                 lvls = IC_lvls
-                cont_lvls = IC_cont_lvls
                 if c == 0:
                     axes[r,c].set_ylabel('IC', fontsize=font_sz, labelpad=48)
                     #axes[r,c].yaxis.set_label_position("right")

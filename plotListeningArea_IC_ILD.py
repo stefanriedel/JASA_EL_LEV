@@ -9,7 +9,9 @@ from joblib import Parallel, delayed
 
 if __name__ == '__main__':
     TRY_LOAD_PRECOMPUTED = True
-    DRAW_EXPERIMENT_POSITIONS = True
+    DRAW_CENTER_POS_MARKER = True
+    DRAW_OFFCENTER_POS_MARKER = True
+
     outfile_format = '.pdf'
 
     # Define directory for saving figures
@@ -18,8 +20,7 @@ if __name__ == '__main__':
     fig_data_path = pjoin(root_dir, 'Figures', 'NumpyData')
     utility_path = pjoin(root_dir, 'Utility')
 
-    # Define meshgrid resolution and simulation area
-    res = 40    
+    # Define meshgrid simulation area
     array_radius = 1
     area_len = 1.1
 
@@ -28,7 +29,7 @@ if __name__ == '__main__':
     RECTANGULAR_ARRAY = False
     if not RECTANGULAR_ARRAY:
         # get coordinates for circular array with nLS sources
-        nLS = 12
+        nLS = 8
         x_ls, y_ls, phi_ls = getCircularArray(nLS=nLS, offset_degree=0)
     else:
         # get coordinates for rectangular array
@@ -50,8 +51,12 @@ if __name__ == '__main__':
     num_source_models = len(source_models)
 
     # Create listener meshgrid
-    x = np.linspace(-area_len, area_len, res) * array_radius
-    y = np.linspace(-area_len, area_len, res) * array_radius
+    #x = np.linspace(-area_len, area_len, res) * array_radius
+    x = np.arange(-area_len, area_len+0.05, 0.05)
+    #y = np.linspace(-area_len, area_len, res) * array_radius
+    y = np.arange(-area_len, area_len+0.05, 0.05)
+    res = x.size
+
     [listener_X, listener_Y] = np.meshgrid(x,y)
     listener = np.vstack( (listener_X.flatten(), listener_Y.flatten()) ).transpose()
 
@@ -158,6 +163,7 @@ if __name__ == '__main__':
                     idcs = source_phi[:,p] + rotations[rot]
                     Lmda = np.diag(w_r[:,p])
                     IC, ILD = computeInterauralCues(h_L, h_R, Cov, Lmda, idcs, freq_window, tau_r)
+                    # Careful: LEV_IC holds 1-IC values for direct plotting
                     LEV_IC_tmp[p,rot] = 1 - IC
                     LEV_ILD_tmp[p,rot] = -np.abs(ILD)
 
@@ -179,8 +185,8 @@ if __name__ == '__main__':
         LEV_ILD = np.reshape(LEV_ILD, (num_source_models, res,res))
         LEV_IC = np.reshape(LEV_IC, (num_source_models, res,res))
 
-        np.save(pjoin(save_path, 'LEV_ILD_Data_' + str(x_ls.size) + 'LS'), LEV_ILD)
-        np.save(pjoin(save_path, 'LEV_IC_Data_' + str(x_ls.size) + 'LS'), LEV_IC)
+        np.save(pjoin(fig_data_path, 'LEV_ILD_Data_' + str(x_ls.size) + 'LS'), LEV_ILD)
+        np.save(pjoin(fig_data_path, 'LEV_IC_Data_' + str(x_ls.size) + 'LS'), LEV_IC)
 
 
     num_source_models = 3
@@ -200,7 +206,6 @@ if __name__ == '__main__':
     cbar_ticklabels = [['10','6','3','1','0'],  ['1.0', '0.8', '0.5', '0.0'] ]
 
 
-    #cbar_pos_size = [[0.92, 0.51, 0.01, 0.37], [0.92, 0.11, 0.01, 0.37]]
     cbar_pos_size = [[0.1, 0.54, 0.01, 0.30], [0.1, 0.15, 0.01, 0.30]]
 
     bmap = colors.ListedColormap(["black", "black", "black", "black"])
@@ -210,11 +215,9 @@ if __name__ == '__main__':
     vmins = [-10, 0.0]
     vmaxs = [0.0, 1.0]
 
-    #clrs = ['0.25', '0.5', '0.75', '1.0']
     import matplotlib
     cmap = matplotlib.cm.get_cmap('BuPu_r')
 
-    #clrs = [cmap(0.4), cmap(0.6), cmap(0.8), cmap(1.0)]
     clrs = [cmap(0.5), cmap(0.6), cmap(0.8), '1.0']
 
     for r in range(2):
@@ -225,13 +228,12 @@ if __name__ == '__main__':
                 axes[r,c].set_title(titles[c], fontsize=font_sz)
                 if c == 0:
                     axes[r,c].set_ylabel('|ILD| in dB', fontsize=font_sz, labelpad=48)
-                    #axes[r,c].yaxis.set_label_position("right")
             if r == 1:
+                # Careful: LEV_IC holds 1-IC values for direct plotting
                 LEV = LEV_IC[c,:]
                 lvls = IC_lvls
                 if c == 0:
                     axes[r,c].set_ylabel('IC', fontsize=font_sz, labelpad=48)
-                    #axes[r,c].yaxis.set_label_position("right")
             pcm = axes[r,c].pcolormesh(listener_X,listener_Y, LEV, cmap=cmap, zorder=1, vmin=vmins[r], vmax=vmaxs[r], shading='gouraud')
 
 
@@ -249,22 +251,29 @@ if __name__ == '__main__':
             for l, s in zip(CS.levels, strs):
                 fmt[l] = s
 
-            axes[r,c].clabel(CS, CS.levels, inline=True, fmt=fmt, fontsize=10)
+            axes[r,c].clabel(CS, CS.levels, inline=True, fmt=fmt, fontsize=12)
             axes[r,c].set_xlim(-area_len, area_len)
             axes[r,c].set_ylim(-area_len, area_len)
-            #axes[r,c].set_xticks([-1.0,-0.5,0,0.5,1.0],['-1.0','-0.5','0.0','0.5','1.0'], fontsize=8)
-            #axes[r,c].set_yticks([-1.0,-0.5,0,0.5,1.0],['-1.0','-0.5','0.0','0.5','1.0'], fontsize=8)
             axes[r,c].set_xticks([-1.0,-0.5,0,0.5,1.0])
             axes[r,c].set_yticks([-1.0,-0.5,0,0.5,1.0])
             axes[r,c].grid(visible=True, alpha=0.2)
             axes[r,c].yaxis.set_ticks_position("right")
 
             # Marker for on-center and off-center position of experiment
-            if DRAW_EXPERIMENT_POSITIONS:
-                axes[r,c].scatter(0,0,s=30,marker='x', c='k')
-                axes[r,c].scatter(0.5,0,s=30,marker='x', c='k')
+            if DRAW_CENTER_POS_MARKER:
+                if r == 0:
+                    axes[r,c].scatter(0,0,s=30,marker='*', c='k', label='{0:.2f}'.format(round(np.abs(LEV_ILD[c,22,22]), 2)))
+                if r == 1:
+                    axes[r,c].scatter(0,0,s=30,marker='*', c='k', label='{0:.2f}'.format(round(1 - LEV_IC[c,22,22], 2)))
+            if DRAW_OFFCENTER_POS_MARKER:
+                if r == 0:
+                    axes[r,c].scatter(0.5,0,s=30,marker='x', c='k', label='{0:.2f}'.format(round(np.abs(LEV_ILD[c,32,22]), 2)))                   
+                if r == 1:
+                    axes[r,c].scatter(0.5,0,s=30,marker='x', c='k', label='{0:.2f}'.format(round(1 - LEV_IC[c,32,22], 2)))                    
 
-            
+            axes[r,c].legend(loc=(0.785,0.01), fontsize=10, handletextpad=0.1, handlelength=1.0, labelspacing=0.1, framealpha=0.9, borderpad=0.1)
+
+
             # Source / Loudspeaker icon drawing
             t = np.arange(1/8, 1, 1/4) * 2*np.pi
             x_square = np.cos(t) * 0.1

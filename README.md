@@ -25,7 +25,7 @@ computes angular remapping and gain adjustment for the stimuli used in the liste
   
 All plots are directly saved to the 'Figures' directory without pop-up figure windows.
 
-In the 'Figures' directory you can find many pre-rendered plots. The following plot shows that line sources provide the largest area of optimal cues for envelopment: a low interaural level difference (< 1dB) and a low interaural coherence (< 0.4). We assume the loudspeakers to play incoherent sound signals of equal variance (diffuse-field reproduction).
+In the 'Figures' directory you can find many pre-rendered plots. The following plot shows that line sources provide the largest area of optimal cues for envelopment: a low interaural level difference (< 1dB) and a low interaural coherence (< 0.5). We assume the loudspeakers to play incoherent sound signals of equal variance (diffuse-field reproduction).
 
 <img src="/Figures/ListeningArea_IC_ILD/12LS_sweet_area_ERB.jpg" alt="drawing" width="500"/>
 

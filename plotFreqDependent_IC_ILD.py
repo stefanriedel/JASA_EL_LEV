@@ -1,8 +1,18 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from os.path import dirname, join as pjoin
+from Utility.symmetrizeCircularHRTF import symmetrizeCircularHRTF
 
 COLOR_PLOTS = True
+SYMMETRIC_HRTF = True
+
+# Select experiment conditions to plot
+subset_to_plot = [12,13,14,15]
+# [0,1,2,3] -> 2LS
+# [4,5,6,7] -> 4LS
+# [8,9,10,11] -> 8LS
+# [12,13,14,15] -> 12LS
+
 root_dir = dirname(__file__)
 utility_path = pjoin(root_dir, 'Utility')
 data_dir = pjoin(root_dir, 'ExperimentData')
@@ -14,7 +24,7 @@ with open(pjoin(data_dir, 'map.npy'), 'rb') as f:
     gain_map = np.load(f)
 num_stimuli = gain_map.shape[0]
 
-#Load gammatone magnitude windows, precomputed using the 'pyfilterbank' library
+# Load gammatone magnitude windows, precomputed using the 'pyfilterbank' library
 # https://github.com/SiggiGue/pyfilterbank
 filename = 'gammatone_erb_mag_windows_nfft_4096_numbands_320.npy'
 gammatone_mag_win = np.load(pjoin(utility_path, filename))
@@ -26,6 +36,8 @@ f_c = np.load(pjoin(utility_path, filename))
 # Load the HRIR of KU100 dummy head
 hrir = np.load(file='./Utility/HRIR_CIRC360_48kHz.npy')
 hrtf = np.fft.rfft(hrir ,n=Nfft,axis=-1)
+if SYMMETRIC_HRTF:
+    hrtf = symmetrizeCircularHRTF(hrtf)
 h_L = hrtf[:,0,:]
 h_R = hrtf[:,1,:]
 fs = 48000
@@ -90,7 +102,6 @@ for stim in range(num_stimuli):
 
 
 plt.figure(figsize=(5, 3))
-subset_to_plot = [12,13,14,15]
 labels = ['on-center', 'off-c: const. sources', 'off-c: line sources', 'off-c: point sources']
 ls = ['-', '-.', '--', (0,(1,1)),'-']
 if COLOR_PLOTS:
@@ -141,6 +152,5 @@ ax = plt.gca()
 ax.tick_params(which='minor', length=4)
 ax.tick_params(which='major', length=6)
 plt.savefig(fname=pjoin(save_path, 'ILD.pdf'), bbox_inches='tight')
-
 
 print('done')

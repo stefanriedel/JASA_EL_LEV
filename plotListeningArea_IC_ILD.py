@@ -4,8 +4,8 @@ import matplotlib.colors as colors
 from os.path import dirname, join as pjoin
 import os
 from Utility.sweetAreaUtility import getCircularArray, getRectangularArray, computeInterauralCues
+from Utility.symmetrizeCircularHRTF import symmetrizeCircularHRTF
 from joblib import Parallel, delayed
-
 
 if __name__ == '__main__':
     TRY_LOAD_PRECOMPUTED = True
@@ -25,6 +25,7 @@ if __name__ == '__main__':
     area_len = 1.1
 
     USE_GAMMATONE_WINDOWS = True
+    SYMMETRIC_HRTF = True
     # Specify simulated layout
     RECTANGULAR_ARRAY = False
     if not RECTANGULAR_ARRAY:
@@ -33,7 +34,7 @@ if __name__ == '__main__':
         x_ls, y_ls, phi_ls = getCircularArray(nLS=nLS, offset_degree=0)
     else:
         # get coordinates for rectangular array
-        array_width = 0.6
+        array_width = 0.8
         array_length = 1.0
         x_ls, y_ls, phi_ls, draw_rot = getRectangularArray(nLS_lateral=5, nLS_frontback=3, 
         array_width=array_width, array_length=array_length, off_x=2, off_y=1)
@@ -64,12 +65,18 @@ if __name__ == '__main__':
     LOADING_IC_DATA_FAILED = True
     if TRY_LOAD_PRECOMPUTED:
         # Load precomputed data for fast plotting
-        path_to_ILD = pjoin(fig_data_path, 'LEV_ILD_Data_' + str(x_ls.size) + 'LS.npy')
+        if not RECTANGULAR_ARRAY:
+            path_to_ILD = pjoin(fig_data_path, 'LEV_ILD_Data_' + str(x_ls.size) + 'LS.npy')
+            path_to_IC = pjoin(fig_data_path, 'LEV_IC_Data_' + str(x_ls.size) + 'LS.npy')
+        else:
+            path_to_ILD = pjoin(fig_data_path, 'LEV_ILD_Data_' + str(x_ls.size) + 'LS' 
+            + '_' + 'RECT_' + str(int(array_width*100)) + 'wide' + str(int(array_length*100)) + 'long.npy')
+            path_to_IC = pjoin(fig_data_path, 'LEV_IC_Data_' + str(x_ls.size) + 'LS' 
+            + '_' + 'RECT_' + str(int(array_width*100)) + 'wide' + str(int(array_length*100)) + 'long.npy')
+
         if os.path.isfile(path_to_ILD):
             LEV_ILD = np.load(path_to_ILD)
             LOADING_ILD_DATA_FAILED = False
-
-        path_to_IC = pjoin(fig_data_path, 'LEV_IC_Data_' + str(x_ls.size) + 'LS.npy')
         if os.path.isfile(path_to_IC):
             LEV_IC = np.load(path_to_IC)
             LOADING_IC_DATA_FAILED = False
@@ -93,7 +100,9 @@ if __name__ == '__main__':
         fs = 48000
         #Nfft = 1024
         f = np.linspace(0,fs/2, num=int(Nfft/2+1))
-        hrtf = np.fft.rfft(hrir, n=Nfft, axis=-1) 
+        hrtf = np.fft.rfft(hrir, n=Nfft, axis=-1)
+        if SYMMETRIC_HRTF:
+            hrtf = symmetrizeCircularHRTF(hrtf) 
         h_L = hrtf[:,0,:]
         h_R = hrtf[:,1,:]
 
@@ -185,8 +194,14 @@ if __name__ == '__main__':
         LEV_ILD = np.reshape(LEV_ILD, (num_source_models, res,res))
         LEV_IC = np.reshape(LEV_IC, (num_source_models, res,res))
 
-        np.save(pjoin(fig_data_path, 'LEV_ILD_Data_' + str(x_ls.size) + 'LS'), LEV_ILD)
-        np.save(pjoin(fig_data_path, 'LEV_IC_Data_' + str(x_ls.size) + 'LS'), LEV_IC)
+        if not RECTANGULAR_ARRAY:
+            np.save(pjoin(fig_data_path, 'LEV_ILD_Data_' + str(x_ls.size) + 'LS'), LEV_ILD)
+            np.save(pjoin(fig_data_path, 'LEV_IC_Data_' + str(x_ls.size) + 'LS'), LEV_IC)
+        else:
+            np.save(pjoin(fig_data_path, 'LEV_ILD_Data_' + str(x_ls.size) + 'LS' 
+            + '_' + 'RECT_' + str(int(array_width*100)) + 'wide' + str(int(array_length*100)) + 'long'), LEV_ILD)
+            np.save(pjoin(fig_data_path, 'LEV_IC_Data_' + str(x_ls.size) + 'LS' 
+            + '_' + 'RECT_' + str(int(array_width*100)) + 'wide' + str(int(array_length*100)) + 'long'), LEV_IC)
 
 
     num_source_models = 3
@@ -254,7 +269,9 @@ if __name__ == '__main__':
             axes[r,c].set_xlim(-area_len, area_len)
             axes[r,c].set_ylim(-area_len, area_len)
             axes[r,c].set_xticks([-1.0,-0.5,0,0.5,1.0])
+            axes[r,c].set_xticklabels(labels=['-1','-0.5','0', '0.5' , '1'], fontsize=12)
             axes[r,c].set_yticks([-1.0,-0.5,0,0.5,1.0])
+            axes[r,c].set_yticklabels(labels=['-1','-0.5','0', '0.5' , '1'], fontsize=12)
             axes[r,c].grid(visible=True, alpha=0.2)
             axes[r,c].yaxis.set_ticks_position("right")
 
@@ -270,7 +287,7 @@ if __name__ == '__main__':
                 if r == 1:
                     axes[r,c].scatter(0.5,0,s=30,marker='x', c='k', label='{0:.2f}'.format(round(1 - LEV_IC[c,22,32], 2)))                    
 
-            axes[r,c].legend(loc=(0.785,0.01), fontsize=10, handletextpad=0.1, handlelength=1.0, labelspacing=0.1, framealpha=0.9, borderpad=0.1)
+            axes[r,c].legend(loc=(0.755,0.0), fontsize=12, handletextpad=0.1, handlelength=1.0, labelspacing=0.1, framealpha=0.9, borderpad=0.1)
 
 
             # Source / Loudspeaker icon drawing

@@ -1,15 +1,30 @@
+from operator import truediv
 import numpy as np
 import matplotlib.pyplot as plt
 from os.path import dirname, join as pjoin
+from Utility.symmetrizeCircularHRTF import symmetrizeCircularHRTF
 
 COLOR_PLOTS = True
+SYMMETRIC_HRTF = True
+
+# Select the subset number of LS (2,4,8, or 12)
+subset_name = '2'
+if subset_name == '2':
+    subset_to_plot = 0 + np.arange(4)
+if subset_name == '4':
+    subset_to_plot = 4 + np.arange(4)
+if subset_name == '8':
+    subset_to_plot = 8 + np.arange(4)
+if subset_name == '12':
+    subset_to_plot = 12 + np.arange(4)
+
 root_dir = dirname(__file__)
 utility_path = pjoin(root_dir, 'Utility')
 data_dir = pjoin(root_dir, 'ExperimentData')
 # Path to store figures
 save_path = pjoin(root_dir, 'Figures', 'AngularError_IC_ILD')
 
-#Load gammatone magnitude windows, precomputed using the 'pyfilterbank' library
+# Load gammatone magnitude windows, precomputed using the 'pyfilterbank' library
 # https://github.com/SiggiGue/pyfilterbank
 filename = 'gammatone_erb_mag_windows_nfft_4096_numbands_320.npy'
 gammatone_mag_win = np.load(pjoin(utility_path, filename))
@@ -21,6 +36,8 @@ f_c = np.load(pjoin(utility_path, filename))
 # Load the HRIR of KU100 dummy head
 hrir = np.load(file='./Utility/HRIR_CIRC360_48kHz.npy')
 hrtf = np.fft.rfft(hrir ,n=Nfft,axis=-1)
+if SYMMETRIC_HRTF:
+    hrtf = symmetrizeCircularHRTF(hrtf)
 h_L = hrtf[:,0,:]
 h_R = hrtf[:,1,:]
 fs = 48000
@@ -50,18 +67,6 @@ C = C_id
 
 # --- Stimuli ---
 # Compute IC and ILD: per stimulus and band, for approx angles (15 deg.) and exact angles (1 deg.)
-
-# Select the subset number of LS (2,4,8, or 12)
-subset_name = '12'
-if subset_name == '2':
-    subset_to_plot = 0 + np.arange(4)
-if subset_name == '4':
-    subset_to_plot = 4 + np.arange(4)
-if subset_name == '8':
-    subset_to_plot = 8 + np.arange(4)
-if subset_name == '12':
-    subset_to_plot = 12 + np.arange(4)
-
 
 for stim in subset_to_plot:
     #exact 

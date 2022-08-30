@@ -12,7 +12,7 @@ if __name__ == '__main__':
     DRAW_CENTER_POS_MARKER = True
     DRAW_OFFCENTER_POS_MARKER = True
 
-    outfile_format = '.pdf'
+    outfile_format = '.jpg'
 
     # Define directory for saving figures
     root_dir = dirname(__file__)
@@ -27,14 +27,14 @@ if __name__ == '__main__':
     USE_GAMMATONE_WINDOWS = True
     SYMMETRIC_HRTF = True
     # Specify simulated layout
-    RECTANGULAR_ARRAY = False
+    RECTANGULAR_ARRAY = True
     if not RECTANGULAR_ARRAY:
         # get coordinates for circular array with nLS sources
-        nLS = 12
+        nLS = 6
         x_ls, y_ls, phi_ls = getCircularArray(nLS=nLS, offset_degree=0)
     else:
         # get coordinates for rectangular array
-        array_width = 0.8
+        array_width = 0.6
         array_length = 1.0
         x_ls, y_ls, phi_ls, draw_rot = getRectangularArray(nLS_lateral=5, nLS_frontback=3, 
         array_width=array_width, array_length=array_length, off_x=2, off_y=1)

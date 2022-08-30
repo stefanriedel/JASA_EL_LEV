@@ -12,7 +12,7 @@ if __name__ == '__main__':
     DRAW_CENTER_POS_MARKER = True
     DRAW_OFFCENTER_POS_MARKER = True
 
-    outfile_format = '.jpg'
+    outfile_format = '.pdf'
 
     # Define directory for saving figures
     root_dir = dirname(__file__)
@@ -27,14 +27,14 @@ if __name__ == '__main__':
     USE_GAMMATONE_WINDOWS = True
     SYMMETRIC_HRTF = True
     # Specify simulated layout
-    RECTANGULAR_ARRAY = True
+    RECTANGULAR_ARRAY = False
     if not RECTANGULAR_ARRAY:
         # get coordinates for circular array with nLS sources
-        nLS = 6
+        nLS = 12
         x_ls, y_ls, phi_ls = getCircularArray(nLS=nLS, offset_degree=0)
     else:
         # get coordinates for rectangular array
-        array_width = 0.6
+        array_width = 0.8
         array_length = 1.0
         x_ls, y_ls, phi_ls, draw_rot = getRectangularArray(nLS_lateral=5, nLS_frontback=3, 
         array_width=array_width, array_length=array_length, off_x=2, off_y=1)
@@ -265,7 +265,7 @@ if __name__ == '__main__':
             for l, s in zip(CS.levels, strs):
                 fmt[l] = s
 
-            axes[r,c].clabel(CS, CS.levels, inline=True, fmt=fmt, fontsize=12)
+            axes[r,c].clabel(CS, CS.levels, inline=True, fmt=fmt, fontsize=12, zorder=2)
             axes[r,c].set_xlim(-area_len, area_len)
             axes[r,c].set_ylim(-area_len, area_len)
             axes[r,c].set_xticks([-1.0,-0.5,0,0.5,1.0])
